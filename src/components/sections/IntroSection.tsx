@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Button from "../ui/Button";
+import IntroSectionImg from "/IntroSectionImg.webp";
 
 export default function IntroSection() {
   return (
@@ -36,7 +37,7 @@ export default function IntroSection() {
             className="flex justify-center md:justify-end"
           >
             <img
-              src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop"
+              src={IntroSectionImg}
               alt="InfinityBleu overview"
               className="w-full md:w-1/2 rounded-2xl shadow-[0_12px_24px_rgba(36,92,255,0.12)] object-cover"
               loading="lazy"
