@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Button from "./ui/Button";
 import Home1 from "/Home1.avif";
-import Home2 from "/Home2.webp";
 import Home3 from "/Home3.avif";
 import Home4 from "/Home4.jpg";
 
@@ -10,7 +9,7 @@ const SLIDE_INTERVAL_MS = 6000; // 6s cycle
 const SLIDE_DURATION_MS = 1000; // 1s slide
 
 // Background images chosen to evoke modern luxury and cinematic feel
-const imageList = [Home1, Home2, Home3, Home4];
+const imageList = [Home1, Home3, Home4];
 
 export default function HeroSection() {
   const images = useMemo(() => imageList, []);
