@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import AlternatingBlocksImg1 from "/AlternatingBlocksImg1.avif";
 import AlternatingBlocksImg2 from "/AlternatingBlocksImg2.webp";
 import AlternatingBlocksImg3 from "/AlternatingBlocksImg3.avif";
+import Button from "../ui/Button";
 
 const blocks = [
   {
@@ -48,9 +49,16 @@ export default function AlternatingBlocks() {
                 <h3 className="text-2xl md:text-4xl font-semibold">
                   {block.title}
                 </h3>
-                <p className="text-[#0B1223]/80 mt-4 leading-relaxed">
+                <p className="text-[#0B1223]/80 mt-4 mb-6 leading-relaxed">
                   {block.body}
                 </p>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Button fillClassName="bg-[#245CFF]">Learn More</Button>
+                </motion.div>
               </motion.div>
 
               {/* Image */}
@@ -60,7 +68,7 @@ export default function AlternatingBlocks() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
               >
-                <div className="overflow-hidden rounded-2xl shadow-[0_12px_24px_rgba(36,92,255,0.1)]">
+                <div className="overflow-hidden shadow-[0_12px_24px_rgba(36,92,255,0.1)]">
                   <img
                     src={block.image}
                     alt={block.title}

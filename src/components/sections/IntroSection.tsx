@@ -2,45 +2,79 @@ import { motion } from "framer-motion";
 import Button from "../ui/Button";
 import IntroSectionImg from "/IntroSectionImg.webp";
 
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function IntroSection() {
   return (
-    <section className="bg-white text-[#0B1223]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Text */}
+    <section className="bg-white text-[#0B1223] overflow-hidden">
+      <div className="max-w-8xl mx-auto px-6 md:px-40 py-24">
+        <div className="flex flex-col md:flex-row items-center gap-4">
+          {/* TEXT */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="flex-1 md:pr-12"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl md:text-5xl font-semibold leading-tight"
+            >
               We Design Experiences That Define the Future
-            </h2>
-            <p className="text-[#0B1223]/70 max-w-xl mt-4 leading-relaxed">
+            </motion.h2>
+
+            <motion.p
+              variants={fadeUp}
+              className="text-[#0B1223]/70 mt-4 leading-relaxed"
+            >
               InfinityBleu combines design, technology, and innovation to craft
               digital ecosystems where brands, culture, and progress intersect.
               Our philosophy blends precision with imagination — every detail
               intentional, every interaction meaningful.
-            </p>
-            <div className="mt-8">
-              <Button fillClassName="bg-[#245CFF]">Learn More</Button>
-            </div>
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-8">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Button fillClassName="bg-[#245CFF]">Learn More</Button>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
-          {/* Image */}
+          {/* IMAGE */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="flex-1 flex justify-center md:justify-end"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-            className="flex justify-center md:justify-end"
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <img
+            <motion.img
               src={IntroSectionImg}
               alt="InfinityBleu overview"
-              className="w-full md:w-1/2 rounded-2xl shadow-[0_12px_24px_rgba(36,92,255,0.12)] object-cover"
+              className="w-full md:h-[500px] md:w-[500px] lg:w-[600px] rounded-sm shadow-[0_12px_24px_rgba(36,92,255,0.12)] object-cover"
               loading="lazy"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             />
           </motion.div>
         </div>
