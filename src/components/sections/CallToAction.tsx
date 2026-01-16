@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../ui/Button";
 
 const integrationLogos = [
   {
@@ -68,9 +69,9 @@ const CallToAction: React.FC = () => {
         <a
           href="/platform/integrations"
           target="_blank"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 shadow-lg transition font-medium"
+          className="inline-block text-black px-8 py-3 shadow-lg transition font-medium"
         >
-          See our Full List of Integrations
+          <Button>See our Full List of Integrations </Button>
         </a>
       </div>
 

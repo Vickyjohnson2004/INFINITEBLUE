@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../ui/Button";
 
 // Define the types for the props
 interface TextContentProps {
@@ -34,9 +35,9 @@ const TextContent: React.FC<TextContentProps> = ({
       <div className="flex items-center justify-left ">
         <a
           href={cta.link}
-          className="mt-4 align-center bg-blue-800 border-br-20 text-xl text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          className="mt-4 align-center text-xl text-black px-4 py-2 rounded-lg  transition"
         >
-          {cta.text}
+          <Button>{cta.text}</Button>
         </a>
       </div>
     </div>

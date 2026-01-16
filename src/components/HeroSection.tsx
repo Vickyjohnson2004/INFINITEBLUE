@@ -1,50 +1,136 @@
-import TrustedPage from "./sections/TrustedPage";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Button from "./ui/Button";
 
-const HeroSection = () => {
+const slides = [
+  {
+    image: "/public/newimg1.jpeg",
+    headline: "Designing Tomorrow's",
+    headlineLine2: "Experience, Today",
+    description:
+      "Crafting the future of personalized experiences the world needs NEXT.",
+    primaryCta: "Discover More",
+  },
+  {
+    image: "/public/newimg2.jpeg",
+    headline: " We Design",
+    headlineLine2: "Experiences That Define the Future.",
+    description:
+      "Transform ideas into reality with our venture design approach and strategic partnerships.",
+    primaryCta: "Explore Solutions",
+  },
+  {
+    image: "/public/newimg3.jpeg",
+    headline: "Empowering Ideas ",
+    headlineLine2: "Through Design Systems",
+    description:
+      "Building integrated solutions that scale with your vision and accelerate growth.",
+    primaryCta: "Learn More",
+  },
+];
+
+export default function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
+
+  const currentSlide = slides[activeIndex];
+
   return (
-    <section className="w-full bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-16 flex flex-col items-center text-center gap-8">
-        {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight max-w-4xl">
-          Powering the Transition to Digital FM.
-          <span className="block text-blue-700 mt-2">
-            Save money. Support your team. Improve your KPIs.
-          </span>
-        </h1>
+    <section
+      aria-label="InfinityBleu hero"
+      className="relative h-[90vh] w-full overflow-hidden bg-black"
+    >
+      {/* Background slider */}
+      <div className="absolute inset-0">
+        <AnimatePresence initial={false}>
+          <motion.img
+            key={activeIndex}
+            src={currentSlide.image}
+            alt="Background visual"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{
+              duration: 1,
+              ease: [0.65, 0, 0.35, 1],
+            }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </AnimatePresence>
+      </div>
 
-        {/* Description */}
-        <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
-          Switch Automation empowers teams digitizing and decarbonizing the
-          world’s largest building portfolios. Our platform delivers tools to
-          optimize operations, validate repairs, maximize ROI, enhance tenant
-          comfort, and streamline reporting.
-        </p>
+      {/* Gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/65 to-black/0" />
 
-        {/* Video */}
-        <div className="w-full max-w-5xl rounded-2xl overflow-hidden shadow-lg">
-          <video
-            className="w-full h-auto object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="https://cdn.prod.website-files.com/628ef5003d1b8f677e814867/67dbcd3da1ea83e165cd823e_Switch-Dx3.png"
-          >
-            <source
-              src="https://designsystem.switchautomation.com/images/Muted_videos/Dx3-Video.mp4"
-              type="video/mp4"
-            />
-          </video>
+      {/* Content */}
+      <div className="relative z-10 h-full w-full flex items-center pl-6 pr-6 sm:pl-10 md:pl-16 lg:pl-24 xl:pl-28">
+        <div className="max-w-2xl text-left text-white">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <h1 className="font-bold leading-snug tracking-tight text-white text-3xl md:text-7xl">
+                {currentSlide.headline} <br />
+                {currentSlide.headlineLine2}
+              </h1>
+
+              <p className="mt-4 text-white/90 text-base sm:text-lg leading-relaxed max-w-prose">
+                {currentSlide.description}
+              </p>
+
+              <div className="mt-6">
+                <Button direction="right">{currentSlide.primaryCta}</Button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
+      </div>
 
-        {/* Trusted Logos / Section */}
-        <div className="w-full pt-10">
-          <TrustedPage />
+      {/* Slide indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div className="flex items-center gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIndex(idx)}
+              className="group relative cursor-pointer"
+              aria-label={`Go to slide ${idx + 1}`}
+            >
+              <div className="h-0.5 w-12 bg-white/20 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-white rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={{
+                    width: idx === activeIndex ? "100%" : "0%",
+                  }}
+                  transition={{
+                    duration: idx === activeIndex ? 6 : 0.3,
+                    ease: idx === activeIndex ? "linear" : [0.65, 0, 0.35, 1],
+                  }}
+                />
+              </div>
+              <div className="absolute inset-0 -m-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="w-full h-full border border-white/30 rounded-full" />
+              </div>
+            </button>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

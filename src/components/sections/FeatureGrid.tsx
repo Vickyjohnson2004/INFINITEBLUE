@@ -2,6 +2,7 @@ import React from "react";
 import FeatureGrid1 from "../../../public/FeatureGrid1.jpg";
 import FeatureGrid2 from "../../../public/FeatureGrid2.jpg";
 import FeatureGrid3 from "../../../public/FeatureGrid4.jpg";
+import Button from "../ui/Button";
 
 const successStories = [
   {
@@ -51,13 +52,7 @@ const FeatureGrid: React.FC = () => {
 
         {/* CTA Button */}
         <div className="mb-16">
-          <a
-            href="/resources/success-stories"
-            target="_blank"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 shadow-lg transition font-medium"
-          >
-            Explore Success Stories
-          </a>
+          <Button>Explore Success Stories</Button>
         </div>
 
         {/* Cards */}
@@ -84,9 +79,9 @@ const FeatureGrid: React.FC = () => {
                 <a
                   href={story.link}
                   target="_blank"
-                  className="mt-4 inline-block bg-gray-100 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-200 transition font-medium text-center"
+                  className="mt-4 inline-block text-gray-800 px-5 py-2 rounded-full transition font-medium text-center"
                 >
-                  Learn more
+                  <Button>Learn more </Button>
                 </a>
               </div>
             </div>

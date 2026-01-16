@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import Button from "../ui/Button";
 import React from "react";
 
 const stats = [
@@ -50,55 +52,43 @@ const features = [
 
 const IntroSection = () => {
   return (
-    <section className="w-full bg-white py-20">
-      <div className="max-w-7xl mx-auto px-2 space-y-20">
-        {/* Heading */}
-        <div className="flex flex-col md:flex-row gap-8 items-center">
-          <h1 className="  text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-            Global
-            <span className="bg-linear-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
-              environmental impact
-            </span>
-            through the
-            <span className="bg-linear-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-              digital transformation
-            </span>
-            of real estate
-          </h1>
-
-          <p className=" text-gray-600 text-lg">
-            The digital transformation of real estate helps reduce environmental
-            impact by improving energy efficiency and resource usage through
-            smart technologies—lowering waste, emissions, and carbon footprints.
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid mt-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-          {stats.map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 bg-gray-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition"
-            >
-              <img src={item.icon} alt="" className="w-15 h-15" />
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  {item.value}
-                </h2>
-                <p className="text-xl text-gray-500">{item.label}</p>
-              </div>
+    <section className="bg-white text-[#0B1223]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+              We Design Experiences That Define the Future
+            </h2>
+            <p className="text-[#0B1223]/70 max-w-xl mt-4 leading-relaxed">
+              InfinityBleu combines design, technology, and innovation to craft
+              digital ecosystems where brands, culture, and progress intersect.
+              Our philosophy blends precision with imagination — every detail
+              intentional, every interaction meaningful.
+            </p>
+            <div className="mt-8 mb-6">
+              <Button>Learn More</Button>
             </div>
-          ))}
+          </motion.div>
         </div>
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mt-20">
           {features.map((feature, i) => (
             <div
               key={i}
               className="border bg-gray-100 rounded-2xl p-8 hover:border-blue-800 transition"
             >
-              <img src={feature.icon} alt="" className="w-18 h-18 mb-6" />
+              <img
+                src={feature.icon}
+                alt={feature.title}
+                className="w-18 h-18 mb-6"
+              />
               <h3 className="text-xl text-black font-semibold mb-4">
                 {feature.title}
               </h3>
@@ -107,9 +97,9 @@ const IntroSection = () => {
                 href={feature.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-blue-800 px-6 py-3 rounded-br-2xl text-blue-800 font-medium transition-all hover:gap-3 hover:bg-blue-50"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-br-2xl font-medium transition-all hover:gap-3 hover:bg-blue-50"
               >
-                Learn more →
+                <Button>Learn More</Button>
               </a>
             </div>
           ))}

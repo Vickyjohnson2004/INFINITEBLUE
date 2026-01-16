@@ -1,3 +1,4 @@
+import React from "react";
 export default function SiteFooter() {
   return (
     <footer className="bg-[#F8FAFF] border-t border-[#E7ECF6] text-[#0B1223]">
@@ -5,9 +6,13 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1 */}
           <div>
-           <a href="/">
-            <img src="/logo.jpg" alt="Infinity Bleu Logo" className="w-30 h-14" />
-           </a>
+            <a href="/">
+              <img
+                src="/logo.jpg"
+                alt="Infinity Bleu Logo"
+                className="w-30 h-14"
+              />
+            </a>
             <p className="text-[#0B1223]/70 mt-4 text-sm leading-relaxed max-w-sm">
               We design modern-luxury experiences that connect vision,
               technology, and culture.

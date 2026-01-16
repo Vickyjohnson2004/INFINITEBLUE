@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-
+import React from "react";
 interface VideoBlockProps {
   id: string;
   src: string;
